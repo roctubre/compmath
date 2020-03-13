@@ -5,6 +5,7 @@
 !.gitignore
 !serie*/
 !*.mpl
+!*.mw
 !*.maple
 !*.py3
 !*.py
