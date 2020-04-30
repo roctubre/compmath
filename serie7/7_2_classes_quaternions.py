@@ -12,7 +12,7 @@ class Quaternion:
             Addition between two Quaternions
         """
         if type(o) is not Quaternion:
-            raise TypeError("Second Value is not a Quanterion")
+            raise TypeError("Second Value is not a Quaternion")
         return Quaternion(self.x0 + o.x0, self.x1 + o.x1, 
                           self.x2 + o.x2, self.x3 + o.x3)
 
@@ -21,7 +21,7 @@ class Quaternion:
             Multiplication between two Quaternions
         """
         if type(o) is not Quaternion:
-            raise TypeError("Second Value is not a Quanterion")
+            raise TypeError("Second Value is not a Quaternion")
         return Quaternion(self.x0*o.x0 - self.x1*o.x1 - self.x2*o.x2 - self.x3*o.x3,
                           self.x0*o.x1 + self.x1*o.x0 + self.x2*o.x3 - self.x3*o.x2,
                           self.x0*o.x2 - self.x1*o.x3 + self.x2*o.x0 + self.x3*o.x1,
