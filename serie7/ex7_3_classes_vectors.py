@@ -1,6 +1,21 @@
 ﻿class Vector:
+    """
+    Implements Vectors operations using lists:
+
+    Following methods are implemented:
+
+    add(Vector, Vector)
+    scalar(float, Vector)
+    """
     def add(z1, z2):
-        """ Adds two vectors """
+        """
+        Adds two vectors of the same dimension and returns a new object.
+        Vectors are added element-wise.
+
+        Keyword arguments:
+        z1 ... first vector (list with numeric elements)
+        z2 ... second vector (list with numeric elements)
+        """
         if type(z1) is not list or type(z2) is not list:
             raise TypeError("Not a vector")
         elif len(z1) != len(z2):
@@ -8,7 +23,13 @@
         return [a + b for a, b in zip(z1, z2)]
 
     def scalar(a, z1):
-        """ Scalar-Vector multiplication """
+        """
+        Scalar-Vector multiplication. Returns a new object.
+
+        Keyword arguments:
+        a  ... the scalar (a number - float or int)
+        z1 ... vector (list with numeric elements)
+        """
         if type(a) not in [int, float]:
             raise TypeError("Scalar is not numerical")
         elif type(z1) is not list:
@@ -17,9 +38,22 @@
 
 
 class VectorPlus(Vector):
+    """
+    Extends the Vector class.
+
+    Following methods are added:
+
+    vector_prod(vector, vector)
+    tensor(vector, vector)
+    """
     def vector_prod(z1, z2):
-        """ Calculates and returns the vector product / cross product 
-            of two vectors. Only works for 3 dimensional vectors.
+        """
+        Calculates the vector product (cross product) of two 3-dimensional vectors.
+        Returns a new object.
+
+        Keyword arguments:
+        z1 ... first vector with 3 elements (list with numeric elements)
+        z2 ... second vector with 3 elements (list with numeric elements)
         """
         if type(z1) is not list or type(z2) is not list:
             raise TypeError("Not a vector")
@@ -30,9 +64,14 @@ class VectorPlus(Vector):
                 z1[0]*z2[1] - z1[1]*z2[0]]
 
     def tensor(z1, z2):
-        """ Calculates and returns the tensor product of two vectors 
-            Note: Forming the tensor product z1 x z2 is like forming 
-            the Cartesion product of two sets
+        """
+        Calculates the tensor product of two vectors.
+        Note: Forming the tensor product z1 x z2 is like forming 
+        the Cartesion product of two sets
+
+        Keyword arguments:
+        z1 ... first vector (list with numeric elements)
+        z2 ... second vector (list with numeric elements)
         """
         if type(z1) is not list or type(z2) is not list:
             raise TypeError("Not a vector")

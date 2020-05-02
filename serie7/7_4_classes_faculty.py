@@ -28,14 +28,14 @@ class faculty:
 
     def fac_stir_err(n, ptr = False):
         """ Return the relative error of the stirling formula """
-        err = abs(faculty.fac(n) - faculty.fac_stir(n))
+        err = abs(faculty.fac(n) - faculty.fac_stir(n)) / faculty.fac(n)
         if ptr:
             print(err)
         return err
 
     def fac_gam_err(n, ptr = False):
         """ Return the relative error of the (1) approximation """
-        err = abs(faculty.fac(n) - faculty.fac_gam(n))
+        err = abs(faculty.fac(n) - faculty.fac_gam(n)) / faculty.fac(n)
         if ptr:
             print(err)
         return err
