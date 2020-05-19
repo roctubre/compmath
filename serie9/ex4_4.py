@@ -1,41 +1,47 @@
 ﻿import numpy as np
+from numpy.linalg import norm
+from scipy.linalg import eig
 
-
-def formed_matrices(n):
+def poweriteration(A, tau=10e-8, x=None):
     """
-    Creates 0,1,2-formed nxn-matrices for a given odd n >= 5.
+    Approximates the eigenvalue with the greatest absolute value of a
+    symmetric matrix A.
     """
-    if n < 5 or n % 2 == 0:
-        raise ValueError("n must be odd and >=5")
+    if A.shape[0] != A.shape[1]:
+        raise ValueError("Matrix A is not symmetric.")
+    if not x:
+        x = np.ones((A.shape[0]))
+    lam = x.dot(np.matmul(A, x))
 
-    # Init matrices
-    A0 = np.zeros((n,n))
-    A1 = np.zeros((n,n))
-    A2 = np.zeros((n,n))
-    mid = int(n/2)
+    while True:
+        x = np.matmul(A, x)/norm(np.matmul(A, x))
+        lam_prev = lam
+        lam = x.dot(np.matmul(A, x))
 
-    # zero
-    A0[[0,-1],:] = 1
-    A0[:,[0,-1]] = 1
+        if abs(lam) <= tau:
+            cond = tau
+        else:
+            cond = tau*abs(lam)
 
-    # one
-    A1[:,mid] = 1
+        if norm(np.matmul(A, x) - lam*x) <= tau and abs(lam_prev - lam) <= cond:
+            break
 
-    # two
-    A2[[0,-1, mid],:] = 1
-    A2[:mid,-1] = 1
-    A2[mid:,0] = 1
-
-    return A0, A1, A2
+    return lam, x
 
 
 
 def main():
-    A0, A1, A2 = formed_matrices(5)
-    print(A0)
-    print(A1)
-    print(A2)
+    # Test 2x2
+    print("### Test 2x2")
+    A = np.array([[6, -1], [2, 3]])
+    print(poweriteration(A)[0])
+    print(eig(A)[0].real)
 
+    # Test 3x3
+    print("\n### Test 3x3")
+    A = np.array([[1, 2, 1], [6, -1, 0], [-1, -2, -1]])
+    print(poweriteration(A)[0])
+    print(eig(A)[0].real)
 
 if __name__ == "__main__":
     main()
