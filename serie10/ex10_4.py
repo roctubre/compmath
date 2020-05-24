@@ -3,15 +3,17 @@ import scipy.integrate as integrate
 import numpy as np
 
 def func1(x):
+    """ 2nd degree function """
     return x**2 #+ 3*x
 
 def func2(x):
+    """ 3nd degree function """
     return x**3 #+ 2*x**2 + 5*x
 
 
 def midpointrule(a, b, f, n):
     """
-    Returns a vector of
+    Returns a vector of values defined by the composite midpoint rule 
     """
     def x(j, N):
         return a + (j*(b-a))/N
