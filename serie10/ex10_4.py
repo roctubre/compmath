@@ -3,11 +3,11 @@ import scipy.integrate as integrate
 import numpy as np
 
 def func1(x):
-    """ 2nd degree function """
+    """ 2nd degree polynomial """
     return x**2 #+ 3*x
 
 def func2(x):
-    """ 3nd degree function """
+    """ 3nd degree polynomial """
     return x**3 #+ 2*x**2 + 5*x
 
 
